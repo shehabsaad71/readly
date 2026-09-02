@@ -1,0 +1,240 @@
+/* ========================================
+   FREE PDF TTS READER — App Component Styles
+   Redesign: Editorial Minimal Reader
+   by Analyst Sandeep
+   ======================================== */
+
+/* ---------- Remove Vite defaults ---------- */
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* ---------- Card surfaces ---------- */
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 0;
+}
+
+.card-muted {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Secondary Button ---------- */
+.btn-secondary {
+  height: 40px;
+  padding: 0 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-xs);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all var(--trans-fast) ease;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- Speed Chips ---------- */
+.speed-chip {
+  height: 32px;
+  padding: 0 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all var(--trans-fast) ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.speed-chip:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+}
+
+.speed-chip.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+}
+
+/* ---------- Inputs ---------- */
+.input,
+input[type="number"],
+input[type="text"],
+select {
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: 0 12px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  transition: all var(--trans-fast) ease;
+}
+
+.input:focus,
+input[type="number"]:focus,
+input[type="text"]:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--focus-ring);
+  background: var(--bg-secondary);
+  outline: none;
+}
+
+/* ---------- Section Labels ---------- */
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+/* ---------- Modal Surfaces ---------- */
+.modal-surface {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.modal-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ---------- Panel Sections ---------- */
+.panel-section {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.panel-section:last-child {
+  border-bottom: none;
+}
+
+/* ---------- Lucide Icon Consistency ---------- */
+.lucide {
+  stroke-width: 1.8px;
+}
+
+/* ---------- Divider ---------- */
+.divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 0;
+}
+
+/* ---------- Badge / Tag ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+}
+
+.badge-accent {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-color: var(--accent-medium);
+}
+
+/* ---------- Smooth Page Transitions ---------- */
+.page-enter {
+  animation: page-fade-in 0.3s ease forwards;
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Hover Card Effect ---------- */
+.hover-lift {
+  transition: transform var(--trans-med) ease, box-shadow var(--trans-med) ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---------- Accordion Row ---------- */
+.accordion-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  cursor: pointer;
+  transition: all var(--trans-fast) ease;
+}
+
+.accordion-row:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--accent);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .speed-chip {
+    height: 28px;
+    font-size: 11px;
+  }
+
+  .panel-section {
+    padding: 12px 14px;
+  }
+}

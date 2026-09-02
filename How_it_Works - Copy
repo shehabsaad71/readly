@@ -1,0 +1,45 @@
+⚙️ How It Works
+
+
+1. Upload PDF        → PDF.js extracts text with positions
+2. Click a word      → Speech engine starts from that word
+3. Browser speaks    → Web Speech API reads text aloud
+4. Words highlight   → onBoundary events track each word
+5. Pauses inserted   → Punctuation-aware pause system
+6. Auto-scroll       → Page follows the current word
+No server. No cloud. Everything happens in your browser.
+
+Text-to-Speech Pipeline
+
+
+PDF → Extract Words with Positions → Build Speech Chunks
+  → Analyze Pauses (punctuation, headings, paragraphs)
+    → Detect Emphasis (bold, caps, key words)
+      → Speak Sub-Chunks with Pauses Between
+        → Track Words via onBoundary Events
+          → Highlight Current Word in Real-Time
+
+⌨️ Keyboard Shortcuts
+Shortcut	Action
+Space	Pause / Resume reading
+Escape	Stop reading and clear highlights
+?	Show keyboard shortcuts panel
+Ctrl + =	Zoom in
+Ctrl + -	Zoom out
+Ctrl + 0	Fit to width
+Ctrl + Scroll	Zoom with mouse wheel
+Mouse Controls
+Action	Result
+Left click a word	Start reading from that word
+Double click	Instantly pause reading
+Right click a word	Show word definition
+
+🛠 Tech Stack
+Technology	Purpose
+React 18	UI framework
+TypeScript	Type safety
+Vite	Build tool & dev server
+PDF.js	PDF parsing & rendering
+Web Speech API	Text-to-speech
+Lucide React	Icons
+Free Dictionary API	Word definitions

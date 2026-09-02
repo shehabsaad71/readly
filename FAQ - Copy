@@ -1,0 +1,29 @@
+FAQ
+
+Is this really free?
+Yes. No trials, no premium tier, no "free for 7 days." Free forever, open source under MIT license.
+
+Is my PDF uploaded to a server?
+No. Your PDF is processed entirely in your browser using JavaScript. Zero network requests are made with your file data. The only network request is for dictionary lookups (optional), which sends a single word.
+
+Which browsers work best?
+Google Chrome and Microsoft Edge offer the most voices and best speech quality. Firefox and Safari work but have fewer voices and less accurate word tracking.
+
+Can I use this with scanned PDFs?
+Scanned PDFs (image-only) cannot be read because they contain no extractable text. The app works best with text-based PDFs. If your PDF has selectable text (you can highlight text in Adobe Reader), it will work.
+
+How many pages can it handle?
+The app uses virtualized rendering, so it efficiently handles PDFs with 300+ pages. Only visible pages are rendered at any time.
+
+Does it work offline?
+Yes — text-to-speech works completely offline. The only feature requiring internet is the dictionary lookup (right-click word definitions).
+
+Can I adjust the reading speed?
+Yes. Choose from 0.5× (half speed, great for learning) to 3× (triple speed, great for skimming). Speed changes take effect immediately, even mid-sentence.
+
+Why does the voice sound robotic?
+Voice quality depends on your operating system. Windows 10/11 with Chrome/Edge typically has the best voices. Try different voices in the Voice Picker — some sound much more natural than others. Voices labeled "Online" or "Google" tend to sound best.
+
+Can I use this commercially?
+Yes. The MIT license allows commercial use. See LICENSE for details.
+

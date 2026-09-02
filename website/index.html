@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0f">
+  <meta name="description" content="Readly — A clean and simple PDF text-to-speech reader.">
+  <meta name="author" content="Shehab Saad">
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <title>Readly — PDF TTS Reader</title>
+
+  <style>
+    /* ========================================
+       READLY — LANDING PAGE
+       Single-file HTML / CSS / JS
+       ======================================== */
+
+    :root {
+      --bg: #0b0b0f;
+      --surface: #111117;
+      --surface-2: #17171f;
+      --border: rgba(255,255,255,.09);
+      --text: #f5f5f7;
+      --muted: #9b9ba6;
+      --accent: #7c6cff;
+      --accent-2: #9a8cff;
+      --success: #54d18a;
+      --radius: 22px;
+      --max-width: 1120px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(124,108,255,.16), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ---------- NAVBAR ---------- */
+
+    .nav {
+      width: 100%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(11,11,15,.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav-inner {
+      width: min(var(--max-width), calc(100% - 40px));
+      min-height: 72px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), #4d42bc);
+      box-shadow: 0 10px 30px rgba(124,108,255,.25);
+    }
+
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .brand-name {
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-link {
+      padding: 9px 13px;
+      border-radius: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      transition: .2s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+      background: rgba(255,255,255,.06);
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: auto;
+      min-height: calc(100vh - 72px);
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 70px;
+      padding: 90px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 11px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: #c4c0ff;
+      background: rgba(124,108,255,.07);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 12px rgba(84,209,138,.7);
+    }
+
+    .hero h1 {
+      margin-top: 22px;
+      max-width: 680px;
+      font-size: clamp(46px, 6vw, 78px);
+      line-height: .98;
+      letter-spacing: -.065em;
+    }
+
+    .hero h1 span {
+      color: var(--accent-2);
+    }
+
+    .hero-description {
+      margin-top: 24px;
+      max-width: 600px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      min-height: 50px;
+      padding: 0 20px;
+      border-radius: 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 750;
+      cursor: pointer;
+      transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: #0b0b0f;
+      box-shadow: 0 14px 40px rgba(255,255,255,.08);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 18px 45px rgba(255,255,255,.14);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.04);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.08);
+    }
+
+    .btn svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .meta {
+      margin-top: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: #777783;
+      font-size: 12px;
+    }
+
+    .meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ---------- APP PREVIEW ---------- */
+
+    .preview-wrap {
+      position: relative;
+    }
+
+    .glow {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      background: var(--accent);
+      filter: blur(110px);
+      opacity: .16;
+      pointer-events: none;
+    }
+
+    .app-window {
+      position: relative;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      overflow: hidden;
+      background: #101016;
+      box-shadow:
+        0 35px 100px rgba(0,0,0,.5),
+        0 0 0 1px rgba(255,255,255,.02);
+      transform: rotate(1deg);
+      transition: transform .4s ease;
+    }
+
+    .app-window:hover {
+      transform: rotate(0deg) translateY(-5px);
+    }
+
+    .window-bar {
+      height: 46px;
+      padding: 0 15px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      border-bottom: 1px solid var(--border);
+      background: #14141b;
+    }
+
+    .window-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #3c3c45;
+    }
+
+    .window-title {
+      margin-left: 8px;
+      color: #74747e;
+      font-size: 11px;
+    }
+
+    .reader {
+      padding: 25px;
+      min-height: 420px;
+      display: grid;
+      grid-template-columns: 55px 1fr;
+      gap: 22px;
+    }
+
+    .sidebar {
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .side-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      color: #73737e;
+      background: rgba(255,255,255,.035);
+    }
+
+    .side-icon.active {
+      color: #c8c2ff;
+      background: rgba(124,108,255,.15);
+    }
+
+    .document {
+      background: #f4f2eb;
+      color: #26242a;
+      border-radius: 7px;
+      padding: 30px;
+      min-height: 360px;
+      box-shadow: 0 20px 50px rgba(0,0,0,.25);
+    }
+
+    .document-label {
+      color: #89858b;
+      font-size: 8px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 800;
+    }
+
+    .document h3 {
+      margin-top: 14px;
+      font-family: Georgia, serif;
+      font-size: 24px;
+      line-height: 1.15;
+    }
+
+    .document p {
+      margin-top: 16px;
+      font-family: Georgia, serif;
+      font-size: 10px;
+      line-height: 1.8;
+      color: #57535a;
+    }
+
+    .document-line {
+      height: 6px;
+      margin-top: 9px;
+      border-radius: 5px;
+      background: #ddd9d0;
+    }
+
+    .document-line.short {
+      width: 62%;
+    }
+
+    .document-line.medium {
+      width: 81%;
+    }
+
+    .playback {
+      margin-top: 22px;
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #15151c;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .play-button {
+      width: 36px;
+      height: 36px;
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--text);
+      color: #111;
+    }
+
+    .progress {
+      flex: 1;
+    }
+
+    .progress-bar {
+      height: 4px;
+      border-radius: 10px;
+      background: #35353e;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 42%;
+      height: 100%;
+      background: var(--accent);
+    }
+
+    .progress-time {
+      margin-top: 5px;
+      display: flex;
+      justify-content: space-between;
+      color: #70707b;
+      font-size: 8px;
+    }
+
+    /* ---------- FEATURES ---------- */
+
+    .section {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: auto;
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      max-width: 650px;
+      margin-bottom: 38px;
+    }
+
+    .section-heading .label {
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .section-heading h2 {
+      margin-top: 10px;
+      font-size: clamp(32px, 4vw, 50px);
+      line-height: 1.05;
+      letter-spacing: -.045em;
+    }
+
+    .section-heading p {
+      margin-top: 14px;
+      color: var(--muted);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .feature {
+      min-height: 210px;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.045),
+        rgba(255,255,255,.018)
+      );
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      border-color: rgba(124,108,255,.3);
+    }
+
+    .feature-icon {
+      width: 43px;
+      height: 43px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      color: #c4beff;
+      background: rgba(124,108,255,.12);
+    }
+
+    .feature-icon svg {
+      width: 21px;
+      height: 21px;
+    }
+
+    .feature h3 {
+      margin-top: 23px;
+      font-size: 17px;
+    }
+
+    .feature p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    /* ---------- DOWNLOAD ---------- */
+
+    .download-card {
+      position: relative;
+      overflow: hidden;
+      padding: 55px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(124,108,255,.15), transparent 30%),
+        #111117;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+    }
+
+    .download-card h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -.05em;
+    }
+
+    .download-card p {
+      margin-top: 12px;
+      color: var(--muted);
+      max-width: 570px;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      width: min(var(--max-width), calc(100% - 40px));
+      min-height: 100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: #6f6f79;
+      font-size: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 11px;
+      border-radius: 9px;
+      transition: .2s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--text);
+      background: rgba(255,255,255,.05);
+    }
+
+    .footer-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ---------- TOAST ---------- */
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 25px;
+      transform: translate(-50%, 30px);
+      padding: 11px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #181820;
+      color: var(--text);
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s ease;
+      z-index: 999;
+      box-shadow: 0 15px 40px rgba(0,0,0,.4);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 55px;
+        padding: 65px 0;
+      }
+
+      .hero h1 {
+        max-width: 700px;
+      }
+
+      .features {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .download-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 38px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav-inner,
+      .hero,
+      .section,
+      .footer-inner {
+        width: min(100% - 28px, var(--max-width));
+      }
+
+      .nav-inner {
+        min-height: 64px;
+      }
+
+      .nav-links .nav-link:first-child {
+        display: none;
+      }
+
+      .hero {
+        padding: 55px 0;
+      }
+
+      .hero h1 {
+        font-size: clamp(43px, 14vw, 65px);
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .reader {
+        grid-template-columns: 40px 1fr;
+        gap: 12px;
+        padding: 15px;
+      }
+
+      .document {
+        padding: 18px;
+      }
+
+      .document h3 {
+        font-size: 18px;
+      }
+
+      .footer-inner {
+        padding: 25px 0;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+
+  <nav class="nav">
+    <div class="nav-inner">
+
+      <a href="#" class="brand">
+        <span class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 4h10a4 4 0 0 1 4 4v12H9a4 4 0 0 1-4-4V4Z"/>
+            <path d="M5 16a4 4 0 0 0 4 4"/>
+            <path d="M9 8h6"/>
+            <path d="M9 12h5"/>
+          </svg>
+        </span>
+        <span class="brand-name">Readly</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#features" class="nav-link">Features</a>
+
+        <a
+          href="https://shehabsaad71.github.io/shehab"
+          target="_blank"
+          rel="noopener"
+          class="nav-link"
+        >
+          Website
+        </a>
+
+        <a href="#download" class="nav-link">Download</a>
+      </div>
+
+    </div>
+  </nav>
+
+
+  <!-- ================= HERO ================= -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Free PDF TTS Reader
+        </div>
+
+        <h1>
+          Read less.<br>
+          <span>Listen more.</span>
+        </h1>
+
+        <p class="hero-description">
+          Readly turns your PDF books into a clean listening experience.
+          Open your document, press play, and let your book speak for itself.
+        </p>
+
+        <div class="actions">
+
+          <a
+            class="btn btn-primary"
+            href="https://shehabsaad71.github.io/readly"
+            id="downloadButton"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14"/>
+              <path d="m13 6 6 6-6 6"/>
+            </svg>
+            Try Now
+          </a>
+
+          <a href="#features" class="btn btn-secondary">
+            Explore features
+          </a>
+
+        </div>
+
+        <div class="meta">
+          <span>✓ Free to use</span>
+          <span>✓ Android</span>
+          <span>✓ PDF support</span>
+          <span>✓ Text to speech</span>
+        </div>
+
+      </div>
+
+
+      <!-- APP PREVIEW -->
+
+      <div class="preview-wrap">
+
+        <div class="glow"></div>
+
+        <div class="app-window">
+
+          <div class="window-bar">
+            <span class="window-dot"></span>
+            <span class="window-dot"></span>
+            <span class="window-dot"></span>
+            <span class="window-title">Readly — PDF Reader</span>
+          </div>
+
+          <div class="reader">
+
+            <aside class="sidebar">
+
+              <div class="side-icon active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 5a3 3 0 0 1 3-3h13v18H7a3 3 0 0 1-3-3V5Z"/>
+                  <path d="M7 20a3 3 0 0 1 3 3"/>
+                </svg>
+              </div>
+
+              <div class="side-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 5h16"/>
+                  <path d="M4 12h16"/>
+                  <path d="M4 19h16"/>
+                </svg>
+              </div>
+
+              <div class="side-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="m12 8 4 4-4 4"/>
+                </svg>
+              </div>
+
+            </aside>
+
+
+            <div>
+
+              <div class="document">
+
+                <div class="document-label">
+                  Reading document
+                </div>
+
+                <h3>The Old Man and the Sea</h3>
+
+                <p>
+                  He was an old man who fished alone in a skiff
+                  in the Gulf Stream and he had gone eighty-four
+                  days now without taking a fish.
+                </p>
+
+                <div class="document-line"></div>
+                <div class="document-line medium"></div>
+                <div class="document-line"></div>
+                <div class="document-line short"></div>
+
+                <div class="playback">
+
+                  <button class="play-button" id="previewPlay" aria-label="Play preview">
+                    <svg id="playIcon" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </button>
+
+                  <div class="progress">
+
+                    <div class="progress-bar">
+                      <div class="progress-fill" id="progressFill"></div>
+                    </div>
+
+                    <div class="progress-time">
+                      <span id="currentTime">01:42</span>
+                      <span>04:08</span>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= FEATURES ================= -->
+
+    <section class="section" id="features">
+
+      <div class="section-heading">
+        <div class="label">Why Readly</div>
+
+        <h2>
+          A simpler way to experience your books.
+        </h2>
+
+        <p>
+          Everything you need to turn PDF documents into a comfortable
+          reading and listening experience.
+        </p>
+      </div>
+
+
+      <div class="features">
+
+        <article class="feature">
+
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 5a3 3 0 0 1 3-3h13v18H7a3 3 0 0 1-3-3V5Z"/>
+              <path d="M7 20a3 3 0 0 1 3 3"/>
+            </svg>
+          </div>
+
+          <h3>PDF Reader</h3>
+
+          <p>
+            Open your PDF books and read them through a clean,
+            distraction-free interface.
+          </p>
+
+        </article>
+
+
+        <article class="feature">
+
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Z"/>
+              <path d="M19 11a7 7 0 0 1-14 0"/>
+              <path d="M12 18v3"/>
+              <path d="M8 21h8"/>
+            </svg>
+          </div>
+
+          <h3>Text to Speech</h3>
+
+          <p>
+            Listen to your documents with text-to-speech while you read,
+            relax, or multitask.
+          </p>
+
+        </article>
+
+
+        <article class="feature">
+
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 3v18"/>
+              <path d="M3 12h18"/>
+              <path d="M5 5l14 14"/>
+              <path d="m19 5-14 14"/>
+            </svg>
+          </div>
+
+          <h3>Simple Interface</h3>
+
+          <p>
+            No unnecessary complexity. Just your document, your controls,
+            and a comfortable reading environment.
+          </p>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= DOWNLOAD ================= -->
+
+    <section class="section" id="download">
+
+      <div class="download-card">
+
+        <div>
+          <h2>Ready to read differently?</h2>
+
+          <p>
+            Download Readly for Android and turn your PDF library
+            into an easy listening experience.
+          </p>
+        </div>
+
+        <a
+          class="btn btn-primary"
+          href="https://shehabsaad71.github.io/readly"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14"/>
+            <path d="m13 6 6 6-6 6"/>
+          </svg>
+          Try Now
+        </a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div>
+        © <span id="year"></span> Readly · Built by Shehab Saad
+      </div>
+
+      <div class="footer-links">
+
+        <a
+          class="footer-link"
+          href="https://shehabsaad71.github.io/shehab"
+          target="_blank"
+          rel="noopener"
+          aria-label="Website"
+        >
+          <!-- Website icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18"/>
+            <path d="M12 3c3 3 4 6 4 9s-1 6-4 9"/>
+            <path d="M12 3c-3 3-4 6-4 9s1 6 4 9"/>
+          </svg>
+          Website
+        </a>
+
+        <a
+          class="footer-link"
+          href="mailto:fuuytf1@gmail.com"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="5" width="18" height="14" rx="2"/>
+            <path d="m3 7 9 6 9-6"/>
+          </svg>
+          Email
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- ================= TOAST ================= -->
+
+  <div class="toast" id="toast">
+    Download started
+  </div>
+
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script>
+    // Current year
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+
+    // Preview player
+    const previewPlay =
+      document.getElementById("previewPlay");
+
+    const playIcon =
+      document.getElementById("playIcon");
+
+    const progressFill =
+      document.getElementById("progressFill");
+
+    const currentTime =
+      document.getElementById("currentTime");
+
+    let playing = false;
+    let progress = 42;
+    let timer = null;
+
+    previewPlay.addEventListener("click", () => {
+
+      playing = !playing;
+
+      if (playing) {
+
+        playIcon.innerHTML =
+          '<path d="M7 5h3v14H7zM14 5h3v14h-3z"/>';
+
+        timer = setInterval(() => {
+
+          progress += .25;
+
+          if (progress >= 100) {
+            progress = 0;
+          }
+
+          progressFill.style.width =
+            progress + "%";
+
+          const seconds =
+            Math.floor((progress / 100) * 248);
+
+          const minutes =
+            Math.floor(seconds / 60);
+
+          const secs =
+            seconds % 60;
+
+          currentTime.textContent =
+            String(minutes).padStart(2, "0") +
+            ":" +
+            String(secs).padStart(2, "0");
+
+        }, 100);
+
+      } else {
+
+        playIcon.innerHTML =
+          '<path d="M8 5v14l11-7z"/>';
+
+        clearInterval(timer);
+
+      }
+
+    });
+  </script>
+
+</body>
+</html>

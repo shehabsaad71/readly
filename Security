@@ -1,0 +1,39 @@
+# Security Policy
+
+## Privacy by Design
+
+PDF Text-to-Speech Reader is built with privacy as a core principle:
+
+- **No file uploads** — Your PDF never leaves your computer
+- **No server processing** — Everything runs in your browser
+- **No accounts** — No login, signup, or authentication
+- **No tracking** — No analytics, cookies, or fingerprinting
+- **No data storage** — Only localStorage for theme preference
+
+## Network Requests
+
+The only network request this app makes is for the **dictionary feature**
+(word definitions), which sends a single word to a free dictionary API.
+This is optional and can be avoided by not right-clicking words.
+
+## Reporting a Vulnerability
+
+If you discover a security issue, please report it responsibly:
+
+1. **Email:** itbusinessanalystsandeep@gmail.com
+2. **Subject:** `[SECURITY] PDF TTS Reader — Brief description`
+3. **Include:** Steps to reproduce, potential impact, suggested fix
+
+Please do NOT open a public GitHub issue for security vulnerabilities.
+
+I will acknowledge receipt within 48 hours and provide a timeline for a fix.
+
+## Supported Versions
+
+| Version | Supported |
+|---------|-----------|
+<<<<<<< HEAD
+| 1.0.x   | ✅ Yes    |
+=======
+| 1.0.x   | ✅ Yes    |
+>>>>>>> ecc14c2591baff4b9aa0ad5fcbd1bb5fd626daaa

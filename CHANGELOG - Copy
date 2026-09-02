@@ -1,0 +1,31 @@
+# Changelog
+
+All notable changes to PDF Text-to-Speech Reader will be documented here.
+
+Format based on [Keep a Changelog](https://keepachangelog.com/).
+
+## [1.0.0] — 2026-02-12
+
+### Added
+- PDF upload with drag & drop support
+- Text-to-speech with 50+ browser voices
+- Real-time word-by-word highlighting
+- Sentence highlighting mode
+- Adjustable reading speed (0.5× to 3×)
+- Voice picker with search and preview
+- Right-click word dictionary lookup
+- Light, Dark, and Sepia themes
+- Keyboard shortcuts (Space, Esc, ?)
+- Zoom controls (Ctrl+scroll, buttons, fit-to-width)
+- Page navigation and jump-to-page
+- Human-sounding pause system (punctuation-aware)
+- Heading detection with emphasis
+- Virtualized page rendering (handles 300+ page PDFs)
+- Auto-scroll to current word
+- "Go to Current Word" button
+- Welcome modal with instructions
+- Toast notifications
+- Responsive footer
+- 100% local processing — no data uploaded anywhere
+- Progressive loading for large documents
+- Focus Reading Mode

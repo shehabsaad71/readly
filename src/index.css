@@ -1,0 +1,924 @@
+/* ========================================
+   FREE PDF TTS READER — Global Styles
+   Redesign: Editorial Minimal Reader (Direction A)
+   by Analyst Sandeep
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@400;600&display=swap');
+
+/* ---------- Foundation Tokens ---------- */
+:root {
+  --font-ui: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-reading: 'Source Serif 4', ui-serif, Georgia, serif;
+
+  /* Spacing: 8px system */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-full: 999px;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+
+  --trans-fast: 120ms;
+  --trans-med: 200ms;
+  --trans-slow: 350ms;
+}
+
+/* ---------- Light Theme (Cool Paper) ---------- */
+:root {
+  --bg-primary: #F6F8FB;
+  --bg-secondary: #FFFFFF;
+  --bg-tertiary: #EEF2F7;
+  --bg-elevated: #FFFFFF;
+  --bg-sunken: #E6EBF2;
+
+  --text-primary: #0B1220;
+  --text-secondary: #3D4F6C;
+  --text-muted: #475569;
+
+  --border-color: #D7DEE9;
+  --border-subtle: #E6EBF2;
+
+  --accent: #2D5BFF;
+  --accent-hover: #1A4AEE;
+  --accent-soft: rgba(45, 91, 255, 0.08);
+  --accent-medium: rgba(45, 91, 255, 0.15);
+
+  /* Keep legacy aliases for components not yet migrated */
+  --accent-start: #2D5BFF;
+  --accent-end: #1A4AEE;
+
+  /* User Custom Colors */
+  --highlight-bg: #6C5CE7;
+  /* Deep Purple */
+  --highlight-blend: normal;
+  /* Normal blend for deep color to ensure visibility */
+  --sentence-bg: #E8E6FF;
+  /* Light Lavender */
+  --sentence-blend: multiply;
+  /* Multiply blend so text shows through light background */
+
+  --success: #16A34A;
+  --warning: #D97706;
+  --error: #DC2626;
+  --info: #2563EB;
+
+  --focus-ring: rgba(45, 91, 255, 0.35);
+
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(215, 222, 233, 0.5);
+  --shadow-color: rgba(0, 0, 0, 0.06);
+
+  --scrollbar-thumb: #C4CCD9;
+  --scrollbar-track: #EEF2F7;
+
+  --skeleton-base: #EEF2F7;
+  --skeleton-shine: #D7DEE9;
+
+  --progress-track: rgba(0, 0, 0, 0.06);
+
+  --dock-bg: #FFFFFF;
+  --dock-border: #D7DEE9;
+}
+
+/* ---------- Dark Theme (Graphite Studio) ---------- */
+[data-theme="dark"] {
+  --bg-primary: #070A12;
+  --bg-secondary: #0E1424;
+  --bg-tertiary: #131C33;
+  --bg-elevated: #1A2340;
+  --bg-sunken: #060810;
+
+  --text-primary: #EAF0FF;
+  --text-secondary: #B0BDD6;
+  --text-muted: #A9B6D3;
+
+  --border-color: #243255;
+  --border-subtle: #1A2540;
+
+  --accent: #7AA2FF;
+  --accent-hover: #9BBAFF;
+  --accent-soft: rgba(122, 162, 255, 0.08);
+  --accent-medium: rgba(122, 162, 255, 0.15);
+
+  --accent-start: #7AA2FF;
+  --accent-end: #5B88F0;
+
+  /* User Custom Colors */
+  --highlight-bg: #6C5CE7;
+  --highlight-blend: normal;
+  --sentence-bg: rgba(108, 92, 231, 0.15);
+  /* Low opacity version of Deep Purple for dark mode sentence */
+  --sentence-blend: normal;
+
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
+
+  --focus-ring: rgba(122, 162, 255, 0.35);
+
+  --glass-bg: rgba(14, 20, 36, 0.85);
+  --glass-border: rgba(36, 50, 85, 0.5);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+
+  --scrollbar-thumb: #2A3555;
+  --scrollbar-track: #0E1424;
+
+  --skeleton-base: #1A2540;
+  --skeleton-shine: #243255;
+
+  --progress-track: rgba(255, 255, 255, 0.06);
+
+  --dock-bg: #0E1424;
+  --dock-border: #243255;
+}
+
+/* ---------- Sepia Theme (Modern Parchment) ---------- */
+[data-theme="sepia"] {
+  --bg-primary: #FBF3E6;
+  --bg-secondary: #FFF9F0;
+  --bg-tertiary: #F3E7D6;
+  --bg-elevated: #FFFBF2;
+  --bg-sunken: #EBD9BE;
+
+  --text-primary: #231A12;
+  --text-secondary: #5A4B3A;
+  --text-muted: #6B5A4B;
+
+  --border-color: #E4D3BD;
+  --border-subtle: #EBD9BE;
+
+  --accent: #2D5BFF;
+  --accent-hover: #1A4AEE;
+  --accent-soft: rgba(45, 91, 255, 0.08);
+  --accent-medium: rgba(45, 91, 255, 0.12);
+
+  --accent-start: #2D5BFF;
+  --accent-end: #1A4AEE;
+
+  /* User Custom Colors */
+  --highlight-bg: #6C5CE7;
+  --highlight-blend: normal;
+  --sentence-bg: #E8E6FF;
+  --sentence-blend: multiply;
+
+  --success: #16A34A;
+  --warning: #D97706;
+  --error: #DC2626;
+  --info: #2563EB;
+
+  --focus-ring: rgba(45, 91, 255, 0.3);
+
+  --glass-bg: rgba(251, 243, 230, 0.8);
+  --glass-border: rgba(228, 211, 189, 0.5);
+  --shadow-color: rgba(35, 26, 18, 0.08);
+
+  --scrollbar-thumb: #C4A882;
+  --scrollbar-track: #EBD9BE;
+
+  --skeleton-base: #F3E7D6;
+  --skeleton-shine: #E4D3BD;
+
+  --progress-track: rgba(0, 0, 0, 0.06);
+
+  --dock-bg: #FFF9F0;
+  --dock-border: #E4D3BD;
+}
+
+
+/* ---------- Base Reset ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-ui);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--trans-slow) ease, color var(--trans-slow) ease;
+  overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
+  line-height: 1.5;
+  font-size: 14px;
+  cursor: default;
+  /* Prevent I-beam cursor on UI text */
+  caret-color: transparent;
+  /* Hide blinking cursor (F7 caret browsing) */
+}
+
+/* Restore caret for inputs */
+input,
+textarea,
+[contenteditable="true"] {
+  caret-color: auto;
+}
+
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#root {
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+  border: 2px solid var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* ---------- Focus & Interaction ---------- */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+a,
+button {
+  transition:
+    transform var(--trans-fast) ease,
+    background var(--trans-fast) ease,
+    box-shadow var(--trans-fast) ease,
+    border-color var(--trans-fast) ease,
+    color var(--trans-fast) ease,
+    opacity var(--trans-fast) ease;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text-primary);
+}
+
+/* ---------- Accent Text (replaces gradient-text) ---------- */
+.gradient-text {
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+}
+
+/* ---------- Word Highlighting ---------- */
+.word-highlight {
+  background-color: var(--highlight-bg);
+  /* User highlight color */
+  mix-blend-mode: multiply;
+  /* Ensure underlying text is visible and darker */
+  color: transparent !important;
+  /* Keep text transparent so canvas text shows */
+  border-radius: 2px;
+  /* Remove bulkiness but keep slight breathing room */
+  padding: 0 2px;
+  margin: 0 -2px;
+  box-shadow: none;
+  outline: none;
+  animation: none;
+  transition: background-color 0.1s ease;
+}
+
+.sentence-highlight {
+  background-color: var(--sentence-bg);
+  mix-blend-mode: var(--sentence-blend);
+  border-radius: 6px;
+  transition: background-color 0.15s ease;
+}
+
+/* ---------- Waveform Animation ---------- */
+.waveform-bar {
+  display: inline-block;
+  width: 3px;
+  margin: 0 1.5px;
+  border-radius: 3px;
+  background: var(--accent);
+  animation: wave 1s ease-in-out infinite;
+}
+
+.waveform-bar:nth-child(1) {
+  animation-delay: 0s;
+  height: 8px;
+}
+
+.waveform-bar:nth-child(2) {
+  animation-delay: 0.1s;
+  height: 14px;
+}
+
+.waveform-bar:nth-child(3) {
+  animation-delay: 0.2s;
+  height: 10px;
+}
+
+.waveform-bar:nth-child(4) {
+  animation-delay: 0.3s;
+  height: 18px;
+}
+
+.waveform-bar:nth-child(5) {
+  animation-delay: 0.15s;
+  height: 12px;
+}
+
+@keyframes wave {
+
+  0%,
+  100% {
+    transform: scaleY(0.4);
+  }
+
+  50% {
+    transform: scaleY(1.2);
+  }
+}
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .waveform-bar {
+    animation: none !important;
+  }
+
+  .word-highlight {
+    animation: none !important;
+  }
+}
+
+/* ---------- Primary Button (solid accent) ---------- */
+.btn-gradient {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0 20px;
+  height: 44px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--trans-med) ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-gradient:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-gradient:active {
+  transform: translateY(0);
+}
+
+.btn-gradient:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ---------- Icon Button ---------- */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--trans-fast) ease;
+}
+
+.btn-icon:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn-icon:active {
+  background: var(--bg-sunken);
+}
+
+/* ---------- Tooltip ---------- */
+.tooltip-wrapper {
+  position: relative;
+}
+
+.tooltip-wrapper::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: normal;
+  width: max-content;
+  max-width: 240px;
+  line-height: 1.4;
+  text-align: center;
+  background: var(--text-primary);
+  color: var(--bg-primary);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--trans-fast) ease, transform var(--trans-fast) ease;
+  z-index: 9999;
+  box-shadow: var(--shadow-md);
+}
+
+.tooltip-wrapper:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.tooltip-wrapper.tooltip-bottom::after {
+  bottom: auto;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+}
+
+.tooltip-wrapper.tooltip-bottom:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.tooltip-wrapper.tooltip-right::after {
+  bottom: auto;
+  top: 50%;
+  left: calc(100% + 10px);
+  transform: translateY(-50%) scale(0.9);
+}
+
+.tooltip-wrapper.tooltip-right:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+
+/* ---------- Skeleton Loader ---------- */
+.skeleton {
+  background: linear-gradient(90deg,
+      var(--skeleton-base) 25%,
+      var(--skeleton-shine) 50%,
+      var(--skeleton-base) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.8s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+  opacity: 0.5;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ---------- Toast Notifications ---------- */
+.toast-enter {
+  animation: toast-in 0.35s ease forwards;
+}
+
+.toast-exit {
+  animation: toast-out 0.3s ease forwards;
+}
+
+@keyframes toast-in {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+/* ---------- Modal ---------- */
+.modal-overlay {
+  animation: overlay-in 0.25s ease forwards;
+}
+
+@keyframes overlay-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  animation: modal-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes overlay-out {
+  0% {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+  }
+
+  100% {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+}
+
+@keyframes modal-out-dramatic {
+  0% {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(0deg);
+  }
+
+  30% {
+    transform: scale(1.02) translateY(-10px) rotate(0.5deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.85) translateY(40px) rotate(-2deg);
+  }
+}
+
+/* ---------- PDF Text Layer ---------- */
+.pdf-text-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.pdf-text-layer .pdf-word {
+  position: absolute;
+  color: transparent;
+  cursor: pointer;
+  white-space: pre;
+  transition: background-color 0.1s ease, filter 0.2s ease, opacity 0.2s ease;
+  border-radius: 3px;
+  z-index: 2;
+  /* Ensure padding adds to width so we can cover wide characters */
+  box-sizing: content-box;
+}
+
+.pdf-text-layer .pdf-word:focus-visible {
+  outline: 2px solid var(--accent);
+  background-color: var(--accent-medium);
+  opacity: 1;
+}
+
+.pdf-text-layer .pdf-word:hover {
+  background-color: var(--accent-soft);
+}
+
+/* When already highlighted, don't change background on hover OR keep it same */
+.pdf-text-layer .pdf-word.word-highlight:hover {
+  background-color: var(--highlight-bg) !important;
+  opacity: 1;
+  /* Keep fully visible */
+  cursor: default;
+}
+
+/* ---------- Progress Bar ---------- */
+.progress-bar {
+  height: 3px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ---------- Global Progress Fill ---------- */
+.global-progress-fill {
+  position: relative;
+}
+
+.global-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent);
+  animation: progress-shimmer 2s ease-in-out infinite;
+}
+
+@keyframes progress-shimmer {
+  0% {
+    transform: translateX(-80px);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(80px);
+    opacity: 0;
+  }
+}
+
+/* ---------- Floating Action Button ---------- */
+.fab {
+  position: fixed;
+  bottom: 80px;
+  right: 24px;
+  z-index: 40;
+  animation: fab-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fab-in {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ---------- Jump-to-page Error ---------- */
+@keyframes jump-error-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ---------- Number Input: hide spinners ---------- */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1280px) {
+  .mobile-hide-1280 {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 900px) {
+  .toolbar-metadata {
+    display: none !important;
+  }
+}
+
+/* ---------- Touch Device: no hover on words ---------- */
+@media (hover: none) and (pointer: coarse) {
+  .pdf-text-layer .pdf-word:hover {
+    background-color: transparent !important;
+  }
+}
+
+/* ---------- Drawer / Sheet Animations ---------- */
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-out-right {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-out-down {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
+}
+
+/* ---------- Dock Slide Up ---------- */
+@keyframes dock-in {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ----------@keyframes glass-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ---------- Reduce Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Controls Panel Utilities ---------- */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+[data-theme="dark"] .glass-panel {
+  background: rgba(10, 14, 23, 0.75);
+}
+
+.stagger-appear {
+  animation: fade-slide-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+@keyframes fade-slide-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.segmented-control {
+  background: var(--bg-tertiary);
+  padding: 4px;
+  border-radius: 12px;
+  display: flex;
+  gap: 4px;
+}
+
+.segmented-tab {
+  flex: 1;
+  padding: 8px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+}
+
+.segmented-tab.active {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode adjustment for segmented control */
+[data-theme="dark"] .segmented-tab.active {
+  background: var(--bg-elevated);
+}
