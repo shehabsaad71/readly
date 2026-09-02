@@ -7,6 +7,9 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+
+  base: '/readly/',
+
   optimizeDeps: {
     include: ['pdfjs-dist'],
   },
